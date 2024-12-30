@@ -1,0 +1,24 @@
+version: 0.2
+
+batch:
+  fast-fail: false
+  build-fanout:
+    parallelism: 3
+    ignore-failure: false
+
+phases:
+  install:
+    commands:
+      - echo 'Installing Ruby dependencies'
+      - bundle install
+  pre_build:
+    commands:
+      - echo 'prebuild'
+  build:
+    commands:
+      - echo 'Running rspec Tests'
+      - rspec --init
+      - codebuild-tests-run --test-command "rspec" --files-search "codebuild-glob-search **/*.feature" 
+  post_build:
+    commands:
+      - echo "Would deploy here"
