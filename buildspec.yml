@@ -18,7 +18,7 @@ phases:
     commands:
       - echo 'Running rspec Tests'
       - rspec --init
-      - codebuild-tests-run --test-command "rspec" --files-search "codebuild-glob-search **/*.feature" 
+      - codebuild-tests-run --test-command "rspec" --files-search "codebuild-glob-search **/*_spec.rb" 
   post_build:
     commands:
       - echo "Would deploy here"
